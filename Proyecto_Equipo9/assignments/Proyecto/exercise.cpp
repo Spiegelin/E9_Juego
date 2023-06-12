@@ -18,8 +18,5 @@ int main()
   cout << "En un mundo asolado por la oscuridad y el caos, los temibles trolls negros conocidos como Madafanes" << endl;
   cout << "han sumido a los mundos en el miedo y la destrucción.Sin embargo, surge un valiente héroe llamado" << endl;
   cout << nombre << ", quien se embarca en una misión para liberar el mundo de la opresión de los Madafanes y restaurar la paz." << endl;
-  cout << "En su camino, Vega se encontrará con personajes singulares, como Heredia, un individuo superficial pero con información valiosa" <<endl;
-  cout << ", y Gilberta, una humana enamorada de un troll negro cuyo amor no es correspondido." << endl;
-  cout << "Acompaña a Vega en esta emocionante aventura, descubre artefactos legendarios y prepárate para una épica batalla entre la luz y la oscuridad que determinará el destino del mundo" << endl;
 }
 
