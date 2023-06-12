@@ -1,4 +1,5 @@
 #include "PersonajeGuerrero.hpp"
+#include <cstdlib> // Para los números aleatorios
 
 // Constructores
 PersonajeGuerrero::PersonajeGuerrero(){}
@@ -28,7 +29,12 @@ void PersonajeGuerrero::setSaludTotal(int _saludTotal) {
 }
 
 void PersonajeGuerrero::setSaludActual(int _saludActual) {
-    saludActual = _saludActual;
+    // Evitar valores negativos
+    if (_saludActual < 0) {
+        saludActual = 0;
+    } else {
+        saludActual = _saludActual;
+    } 
 }
 
 void PersonajeGuerrero::getMaxAtaque(int _maxAtaque) {
@@ -36,9 +42,57 @@ void PersonajeGuerrero::getMaxAtaque(int _maxAtaque) {
 }
 
 // Métodos
-bool isAlive();
-int porcentajeSalud();
-void barraVida();
-void imprime() override;
-int juega() override;
-void recibeInteraccion(int) override;
+bool PersonajeGuerrero::isAlive() {
+    if (getSaludActual() > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+int PersonajeGuerrero::porcentajeSalud()  {
+    return ((getSaludTotal() - getSaludActual()) * 100) / getSaludTotal();
+}
+
+void PersonajeGuerrero::barraVida() {
+    int max = 20;
+    int cantP = (porcentajeSalud() * max) / 100;
+    int cantI = max - cantP;
+
+    for (int i=0; i < cantP;i++) {
+        std::cout << "%";
+    }
+
+    for (int i=0;i < cantP; i++) {
+        std::cout << "=";
+    }
+    std::cout << std::endl;
+}
+
+void PersonajeGuerrero::imprime() {
+    Personaje::imprime();
+    std::cout << "SALUD: "; barraVida(); std::cout << std::endl;
+    std::cout << "-------------------------------------" << std::endl;
+}
+
+int PersonajeGuerrero::juega() {
+    int num = std::rand() % getMaxAtaque()+1;
+    std::cout << "-------------------------------------" << std::endl;
+    std::cout << Personaje::getNombre() << "REALIZÓ UN ATAQUE DE " << num << "PUNTOS DE SALUD" << std::endl;
+    std::cout << "-------------------------------------" << std::endl;
+    return num;
+}
+
+void PersonajeGuerrero::recibeInteraccion(int num) {
+    std::cout << "-------------------------------------" << std::endl;
+    std::cout << "OHHHH NO " << Personaje::getNombre() << " RECIBISTE " << num << "PUNTOS DE DAÑO" << std::endl;
+    std::cout << "-------------------------------------" << std::endl;
+    setSaludActual(getSaludActual() - num);
+
+    if (getSaludActual() <= 0) {
+        std::cout << "...MORISTE..." << std::endl;
+        std::cout << "-------------------------------------" << std::endl;
+    } else {
+        imprime();
+    }
+}
