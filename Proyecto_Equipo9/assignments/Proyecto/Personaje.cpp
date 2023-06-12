@@ -38,6 +38,6 @@ void Personaje::setUbi(Mundo* _ubi) {
 void Personaje::imprime() {
     std::cout << "-------------------------------------" << std::endl;
     std::cout << "PERSONAJE: " << nombre << std::endl;
-    std::cout << "UBICACIÓN: " << getUbi() << std::endl;
+    std::cout << "UBICACIÓN: " << getUbi() -> getNombre() << std::endl;
     std::cout << "-------------------------------------" << std::endl;
 }
