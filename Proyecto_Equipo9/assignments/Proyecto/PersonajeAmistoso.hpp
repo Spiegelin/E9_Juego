@@ -7,6 +7,7 @@ class PersonajeAmistoso: public Personaje {
         // Constructores
         PersonajeAmistoso();
         PersonajeAmistoso(std::string, std::string, Mundo*, bool, std::string);
+        
         // Getters
         bool getEstatus();
         std::string getHistoria();
