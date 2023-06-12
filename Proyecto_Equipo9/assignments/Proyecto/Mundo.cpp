@@ -30,6 +30,10 @@ std::string Mundo::getDescripcion(){
     return this->descripcion;
 }
 
+Item* Mundo::getItem(){
+    return this->items;
+}
+
 void Mundo::setNombre(std::string nombre){
     this->nombre = nombre;
 }
