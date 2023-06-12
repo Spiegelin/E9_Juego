@@ -15,6 +15,7 @@ public:
     ~Item();
     std::string getNombre();
     std::string getDescripcion();
+    int getPuntos();
     void setNombre(std::string);
     void setDescripcion(std::string);
     void mostrarItem();

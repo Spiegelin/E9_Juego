@@ -24,6 +24,10 @@ std::string Item::getDescripcion(){
     return this->descripcion;
 }
 
+int Item::getPuntos(){
+    return this->puntos;
+}
+
 void Item::setNombre(std::string nombre){
     this->nombre = nombre;
 }
