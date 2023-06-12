@@ -8,6 +8,9 @@ Personaje::Personaje(std::string _nombre, std::string _desc, Mundo* _ubi) {
     ubi = _ubi;
 }
 
+// Destructor
+Personaje::~Personaje(){}
+
 // Getters
 std::string Personaje::getNombre() {
     return nombre;

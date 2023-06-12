@@ -8,6 +8,9 @@ class PersonajeGuerrero: public Personaje {
         PersonajeGuerrero();
         PersonajeGuerrero(std::string, std::string, Mundo*, int, int, int);
 
+        // Destructor
+        ~PersonajeGuerrero();
+
         // Getters
         int getSaludTotal();
         int getSaludActual();

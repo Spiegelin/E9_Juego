@@ -9,6 +9,9 @@ class Personaje {
         Personaje();
         Personaje(std::string, std::string, Mundo*);
 
+        // Destructor
+        ~Personaje();
+
         // Getters
         std::string getNombre();
         std::string getDesc();

@@ -10,6 +10,9 @@ PersonajeGuerrero::PersonajeGuerrero(std::string _nombre, std::string _desc, Mun
     maxAtaque = _maxAtaque;
 }
 
+// Destructor
+PersonajeGuerrero::~PersonajeGuerrero(){}
+
 // Getters
 int PersonajeGuerrero::getSaludTotal() {
     return saludTotal;

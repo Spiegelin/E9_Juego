@@ -8,6 +8,9 @@ PersonajeAmistoso::PersonajeAmistoso(std::string _nombre, std::string _desc, Mun
     historia = _historia;
 }
 
+// Destructor
+PersonajeAmistoso::~PersonajeAmistoso(){}
+
 // Getters
 bool PersonajeAmistoso::getEstatus() {
     return estatus;
