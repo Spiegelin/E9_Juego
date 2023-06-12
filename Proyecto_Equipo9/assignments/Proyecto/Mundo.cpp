@@ -9,7 +9,7 @@ Mundo::Mundo(){
     this->refpersonaje = NULL;
 }
 
-Mundo::Mundo(std::string nombre, std::string descripcion, Item* items, Personaje* refpersonaje){
+Mundo::Mundo(std::string nombre, std::string descripcion, Item* items, Personaje* refpersonaje, Mundo* mundosiguiente){
     this->nombre = nombre;
     this->descripcion = descripcion;
     this->mundosiguiente = NULL;
@@ -17,10 +17,6 @@ Mundo::Mundo(std::string nombre, std::string descripcion, Item* items, Personaje
     this->refpersonaje = refpersonaje;
 }
 
-Mundo::~Mundo(){
-    delete this->items;
-    delete this->refpersonaje;
-}
 
 std::string Mundo::getNombre(){
     return this->nombre;
@@ -32,6 +28,10 @@ std::string Mundo::getDescripcion(){
 
 Item* Mundo::getItem(){
     return this->items;
+}
+
+Personaje* Mundo::getPersonaje(){
+    return this->refpersonaje;
 }
 
 void Mundo::setNombre(std::string nombre){
@@ -46,7 +46,16 @@ void Mundo::setMundoSiguiente(Mundo* mundosiguiente){
     this->mundosiguiente = mundosiguiente;
 }
 
+void Mundo::setItem(Item* items){
+    this->items = items;
+}
+
+void Mundo::setPersonaje(Personaje* refpersonaje){
+    this->refpersonaje = refpersonaje;
+}
+
 void Mundo::mostrarMundo(){
     std::cout << "Nombre: " << this->nombre << std::endl;
     std::cout << "Descripcion: " << this->descripcion << std::endl;
+    std::cout << "Personaje: " << this->refpersonaje->getNombre() << std::endl;
 }

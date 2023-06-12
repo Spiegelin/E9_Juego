@@ -12,7 +12,6 @@ private:
 public:
     Item();
     Item(std::string, std::string, int);
-    ~Item();
     std::string getNombre();
     std::string getDescripcion();
     int getPuntos();

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Item.hpp"
+#include "Personaje.hpp"
 
 class Item;
 class Personaje;
@@ -14,13 +15,15 @@ class Mundo{
         Personaje* refpersonaje;
     public:
         Mundo();
-        Mundo(std::string, std::string, Item*, Personaje*);
-        ~Mundo();
+        Mundo(std::string, std::string, Item*, Personaje*, Mundo*);
         std::string getNombre();
         std::string getDescripcion();
         Item* getItem();
+        Personaje* getPersonaje();
         void setNombre(std::string);
         void setDescripcion(std::string);
         void setMundoSiguiente(Mundo*);
+        void setItem(Item*);
+        void setPersonaje(Personaje*);
         void mostrarMundo();
 };

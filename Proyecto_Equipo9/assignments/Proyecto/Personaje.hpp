@@ -1,7 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include "Mundo.cpp"
+#include "Mundo.hpp"
+
+class Mundo;
 
 class Personaje {
     public:

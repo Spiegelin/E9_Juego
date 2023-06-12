@@ -13,8 +13,6 @@ Item::Item(std::string nombre, std::string descripcion, int puntos){
     this->puntos = puntos;
 }
 
-Item::~Item(){
-}
 
 std::string Item::getNombre(){
     return this->nombre;
