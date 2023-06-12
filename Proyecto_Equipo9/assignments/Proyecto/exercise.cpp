@@ -1,7 +1,6 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
-#include "Mundo.hpp"
 #include "Item.hpp"
 #include "PersonajeGuerrero.hpp"
 #include "PersonajeAmistoso.hpp"
