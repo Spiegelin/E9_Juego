@@ -107,10 +107,10 @@ int main()
         break;
       }
 
-      /*if(mundoActual->getMundoSiguiente()==NULL){
+      if(mundoActual->getNombre()=="Madafania"){
         cout << "Felicidades, has ganado el juego" <<endl;
         break;
-      }*/
+      }
       cout<< "******************************************************" <<endl;
     
   }
