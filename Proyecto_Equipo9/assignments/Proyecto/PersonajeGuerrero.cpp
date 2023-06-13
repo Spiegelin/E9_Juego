@@ -63,13 +63,13 @@ void PersonajeGuerrero::barraVida() {
     int cantP = (porcentajeSalud() * max) / 100;
     int cantI = max - cantP;
 
-    for (int i = 0; i < cantP; i++) {
-        std::cout << "=";
-    }
-
     for (int i = 0; i < cantI; i++) {
         std::cout << "%";
     }
+
+    for (int i = 0; i < cantP; i++) {
+        std::cout << "=";
+    } 
     std::cout << std::endl;
 }
 
