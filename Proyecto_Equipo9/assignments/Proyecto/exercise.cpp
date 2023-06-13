@@ -105,6 +105,10 @@ int main()
         cin >> opcion;
         int ataque = jugador->juega(); //Se genera un ataque aleatorio
         personajeact->recibeInteraccion(ataque); //Se le aplica el ataque al personaje
+
+        cout<< "TURNO DEL ENEMIGO" <<endl; 
+        int ataqueenemigo = personajeact->juega(); //Se genera un ataque aleatorio del enemigo
+        jugador->recibeInteraccion(ataqueenemigo); //Se le aplica el ataque al jugador
       }
       else if(personajeact->getTipo()==2){ //Si el personaje es de tipo amistoso, se le da la opcion de interactuar
         cout<< "Ingrea un numero para interactuar" <<endl;
@@ -117,6 +121,12 @@ int main()
       }
       
       primerit = false; //Se define que ya no es la primera iteracion del mundo
+
+
+      if(jugador->isAlive()==false){ //Si el jugador muere, se termina el juego
+        cout << "Has perdido el juego" <<endl;
+        break;
+      }
 
       if(mundoActual->getNombre()=="Madafania" && personajeact->isAlive()==false){ //Si el personaje de Madafania muere, se termina el juego
         cout << "Felicidades, has ganado el juego" <<endl;
