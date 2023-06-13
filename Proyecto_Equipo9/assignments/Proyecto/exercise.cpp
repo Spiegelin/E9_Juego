@@ -16,8 +16,8 @@ using namespace std;
 int main() 
 {
   //CREACION DE ITEMS
-  Item* item1 = new Item("Manzana dorada" , "Una manzana que restaura la salud", 100);
-  Item* item2 = new Item("Pocion de Salud", "Una poción que restaura la salud", 50);
+  Item* item1 = new Item("Manzana dorada" , "Una manzana que restaura la salud", 100, "vida");
+  Item* item2 = new Item("Pocion de Salud", "Una poción que restaura la salud", 50,"vida");
 
   //CREACION DE MUNDOS
   vector<Mundo*> mundos;
@@ -61,7 +61,7 @@ int main()
   cin >> nombre;
 
   //Se crea al personaje del jugador
-  PersonajeGuerrero* jugador= new PersonajeGuerrero(nombre, "El heroe de Eluryh", mundo1,1, 500, 500, 100);
+  PersonajeGuerrero* jugador= new PersonajeGuerrero(nombre, "El heroe de Eluryh", mundo1,1, 300, 300, 100);
 
   cout << "Comenzando..." << endl;
   this_thread::sleep_for(chrono::milliseconds(1000)); //Se pone un timer de 1000 milisegundos para comenzar
@@ -118,6 +118,9 @@ int main()
         int ataque = jugador->juega(); //Se genera un numero aleatorio
         personajeact->recibeInteraccion(ataque); //Se le aplica el numero al personaje
         interactuo = true; //Se define que ya se interactuo con el personaje
+        Item* item = mundoActual->getItem(); //Se obtiene el item del mundo actual
+        item->mostrarItem(); //Se muestra el item
+        jugador->setSaludActual(jugador->getSaludActual()+item->getPuntos()); //Se le suma la salud del item al jugador
       }
       
       primerit = false; //Se define que ya no es la primera iteracion del mundo

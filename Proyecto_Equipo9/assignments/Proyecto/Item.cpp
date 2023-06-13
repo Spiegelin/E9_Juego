@@ -5,12 +5,14 @@ Item::Item(){
     this->nombre = "";
     this->descripcion = "";
     this->puntos = 0;
+    this->tipo = "";
 }
 
-Item::Item(std::string nombre, std::string descripcion, int puntos){
+Item::Item(std::string nombre, std::string descripcion, int puntos, std::string tipo){
     this->nombre = nombre;
     this->descripcion = descripcion;
     this->puntos = puntos;
+    this->tipo = tipo;
 }
 
 
@@ -24,6 +26,10 @@ std::string Item::getDescripcion(){
 
 int Item::getPuntos(){
     return this->puntos;
+}
+
+std::string Item::getTipo(){
+    return this->tipo;
 }
 
 void Item::setNombre(std::string nombre){
