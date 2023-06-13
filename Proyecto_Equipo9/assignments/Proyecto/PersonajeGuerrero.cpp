@@ -64,11 +64,11 @@ void PersonajeGuerrero::barraVida() {
     int cantI = max - cantP;
 
     for (int i = 0; i < cantP; i++) {
-        std::cout << "%";
+        std::cout << "=";
     }
 
     for (int i = 0; i < cantI; i++) {
-        std::cout << "=";
+        std::cout << "%";
     }
     std::cout << std::endl;
 }
