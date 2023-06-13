@@ -19,8 +19,7 @@ class Mundo{
         std::string getNombre();
         std::string getDescripcion();
         Item* getItem();
-        Personaje* getPersonaje();
-        Mundo* getMundoSiguiente(); 
+        Personaje* getPersonaje(); 
         void setNombre(std::string);
         void setDescripcion(std::string);
         void setMundoSiguiente(Mundo*);
