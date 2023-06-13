@@ -104,7 +104,6 @@ int main()
         cout << "Entrando a un nuevo mundo..." <<endl;
         mundoActual = mundo2;
         primerit = true;
-        break;
       }
 
       if(mundoActual->getNombre()=="Madafania"){
