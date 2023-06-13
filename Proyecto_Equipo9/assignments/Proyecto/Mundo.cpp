@@ -34,6 +34,9 @@ Personaje* Mundo::getPersonaje(){
     return this->refpersonaje;
 }
 
+Mundo* Mundo::getMundoSiguiente(){
+    return this->mundosiguiente;
+}
 
 void Mundo::setNombre(std::string nombre){
     this->nombre = nombre;

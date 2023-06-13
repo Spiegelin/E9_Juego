@@ -1,6 +1,8 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <vector>
+#include "Mundo.hpp"
 #include "Item.hpp"
 #include "PersonajeGuerrero.hpp"
 #include "PersonajeAmistoso.hpp"
@@ -18,6 +20,7 @@ int main()
   Item* item2 = new Item("Pocion de Salud", "Una poción que restaura la salud", 50);
 
   //CREACION DE MUNDOS
+  vector<Mundo*> mundos;
 
   Mundo* mundo6 = new Mundo("Madafania", "Reino de la Oscuridad", NULL, NULL,NULL);
   Mundo* mundo5 = new Mundo("CieloFuego", "Una nacion de dragones", NULL, NULL,mundo6);
@@ -25,6 +28,13 @@ int main()
   Mundo* mundo3 = new Mundo("Calavera", "Una nacion de piratas", NULL, NULL,mundo4);
   Mundo* mundo2 = new Mundo("Amazonia", "Una nacion de mujeres guerreras", item2, NULL,mundo3);
   Mundo* mundo1 = new Mundo("Eluryh", "Una nacion de paz y armonia", NULL, NULL,mundo2);
+
+  mundos.push_back(mundo1);
+  mundos.push_back(mundo2);
+  mundos.push_back(mundo3);
+  mundos.push_back(mundo4);
+  mundos.push_back(mundo5);
+  mundos.push_back(mundo6);
 
   //CREACION DE PERSONAJES SECUNDARIOS
 
@@ -49,7 +59,7 @@ int main()
   string nombre;
   cin >> nombre;
 
-  PersonajeGuerrero* jugador= new PersonajeGuerrero(nombre, "El heroe de Eluryh", mundo1,1, 500, 500, 20);
+  PersonajeGuerrero* jugador= new PersonajeGuerrero(nombre, "El heroe de Eluryh", mundo1,1, 500, 500, 100);
 
   cout << "Comenzando..." << endl;
   this_thread::sleep_for(chrono::milliseconds(1000));
@@ -61,9 +71,14 @@ int main()
   cout << "------------------------------------------------------------" << endl;
   cout << " " << endl;
 
-  bool primerit = true;
-  Mundo* mundoActual = mundo1;
+
+//BUCLE DEL JUEGO PRINCIPAL
+
+  bool primerit = true; //Define si es la primera iteracion de un mundo
+  Mundo* mundoActual = mundo1; //variable que define el mundo actual
+  int posicionmundo = 0; //variable que define la posicion del mundo actual en el vector mundos
   cout << "Bienvenido a " << mundoActual->getNombre()<<endl;
+
   while(true){
       cout<< "******************************************************" <<endl;
       Personaje* personajeact = mundoActual->getPersonaje();
@@ -101,16 +116,19 @@ int main()
       
       primerit = false;
 
-      if(personajeact->isAlive()==false || interactuo == true){
-        cout << "Entrando a un nuevo mundo..." <<endl;
-        mundoActual = mundo2;
-        primerit = true;
-      }
-
-      if(mundoActual->getNombre()=="Madafania"){
+      if(mundoActual->getNombre()=="Madafania" && personajeact->isAlive()==false){
         cout << "Felicidades, has ganado el juego" <<endl;
         break;
       }
+
+      if(personajeact->isAlive()==false || interactuo == true){
+        cout << "Entrando a un nuevo mundo..." <<endl;
+        posicionmundo++;
+        mundoActual = mundos[posicionmundo];
+        primerit = true;
+      }
+
+      
       cout<< "******************************************************" <<endl;
     
   }
