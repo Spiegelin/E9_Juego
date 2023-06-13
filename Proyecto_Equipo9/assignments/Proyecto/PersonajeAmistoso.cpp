@@ -3,7 +3,7 @@
 // Constructores
 PersonajeAmistoso::PersonajeAmistoso(){}
 
-PersonajeAmistoso::PersonajeAmistoso(std::string _nombre, std::string _desc, Mundo* _ubi, bool _estatus, std::string _historia):Personaje(_nombre, _desc, _ubi) {
+PersonajeAmistoso::PersonajeAmistoso(std::string _nombre, std::string _desc, Mundo* _ubi,int _tipo, bool _estatus, std::string _historia):Personaje(_nombre, _desc, _ubi,_tipo) {
     estatus = _estatus;
     historia = _historia;
 }
@@ -61,4 +61,8 @@ void PersonajeAmistoso::recibeInteraccion(int num) {
         std::cout << Personaje::getNombre() << "ESTÁ DORMIDO, NO LO MOLESTES" << std::endl;
         std::cout << "-------------------------------------" << std::endl;
     }
+}
+
+bool PersonajeAmistoso::isAlive() {
+    return true;
 }

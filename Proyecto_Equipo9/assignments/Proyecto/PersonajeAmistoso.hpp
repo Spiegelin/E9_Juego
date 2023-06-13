@@ -6,7 +6,7 @@ class PersonajeAmistoso: public Personaje {
     public:
         // Constructores
         PersonajeAmistoso();
-        PersonajeAmistoso(std::string, std::string, Mundo*, bool, std::string);
+        PersonajeAmistoso(std::string, std::string, Mundo*,int, bool, std::string);
 
         // Destructor
         ~PersonajeAmistoso();
@@ -22,6 +22,7 @@ class PersonajeAmistoso: public Personaje {
         // Métodos
         int juega() override;
         void recibeInteraccion(int) override;
+        bool isAlive() override;
     private:
         bool estatus;
         std::string historia;

@@ -23,17 +23,17 @@ int main()
 
   //CREACION DE PERSONAJES SECUNDARIOS
 
-  PersonajeGuerrero* p1 = new PersonajeGuerrero("Madafan basico", "El mas debil de los madafanes", mundo1, 100,100,10);
+  PersonajeGuerrero* p1 = new PersonajeGuerrero("Madafan basico", "El mas debil de los madafanes", mundo1,1, 100,100,10);
   mundo1->setPersonaje(p1);
-  PersonajeAmistoso* p2 = new PersonajeAmistoso("Gilberta", "Una mujer enamorada de un madafan", mundo2,true,"Oh, viajero valiente, soy Gilberta, una humana atrapada en un amor no correspondido. Me he enamorado perdidamente de un troll negro, pero mi corazón solo conoce el dolor de la indiferencia. Sin embargo, puedo ayudarte en tu noble misión. En este oscuro y peligroso mundo, te ofrezco una Poción de Salud, un elixir que restaurará tus fuerzas en momentos de necesidad. Espero que encuentres la felicidad y el éxito en tu aventura. ¡Cuídate!");
+  PersonajeAmistoso* p2 = new PersonajeAmistoso("Gilberta", "Una mujer enamorada de un madafan", mundo2,2,true,"Oh, viajero valiente, soy Gilberta, una humana atrapada en un amor no correspondido. Me he enamorado perdidamente de un troll negro, pero mi corazón solo conoce el dolor de la indiferencia. Sin embargo, puedo ayudarte en tu noble misión. En este oscuro y peligroso mundo, te ofrezco una Poción de Salud, un elixir que restaurará tus fuerzas en momentos de necesidad. Espero que encuentres la felicidad y el éxito en tu aventura. ¡Cuídate!");
   mundo2->setPersonaje(p2);
-  PersonajeGuerrero* p3 = new PersonajeGuerrero("Madafan pirata", "Un madafan que se encuentra en la isla calavera",mundo3,150,150,20);
+  PersonajeGuerrero* p3 = new PersonajeGuerrero("Madafan pirata", "Un madafan que se encuentra en la isla calavera",mundo3,1,150,150,20);
   mundo3->setPersonaje(p3);
-  PersonajeAmistoso* p4 = new PersonajeAmistoso("Heredia", "Un mercader vanidoso", mundo4, true, "¡Saludos, querido aventurero! Soy Heredia, el ser más deslumbrante y encantador que haya pisado jamás estos mundos. Mi aspecto impecable y mi estilo inigualable son la envidia de todos. Pero, permíteme decirte algo, si deseas tener éxito en tu misión de liberar el mundo de los temidos Madafanes, debes encontrar la Espada del Destino, una reliquia legendaria capaz de derrotar incluso al más poderoso de los trolls negros. ¡Buena suerte en tu búsqueda!");
+  PersonajeAmistoso* p4 = new PersonajeAmistoso("Heredia", "Un mercader vanidoso", mundo4,2, true, "¡Saludos, querido aventurero! Soy Heredia, el ser más deslumbrante y encantador que haya pisado jamás estos mundos. Mi aspecto impecable y mi estilo inigualable son la envidia de todos. Pero, permíteme decirte algo, si deseas tener éxito en tu misión de liberar el mundo de los temidos Madafanes, debes encontrar la Espada del Destino, una reliquia legendaria capaz de derrotar incluso al más poderoso de los trolls negros. ¡Buena suerte en tu búsqueda!");
   mundo4->setPersonaje(p4);
-  PersonajeGuerrero* p5 = new PersonajeGuerrero("Dragon negro","Guardian de la puerta de Madafania",mundo5,1000,1000,10);
+  PersonajeGuerrero* p5 = new PersonajeGuerrero("Dragon negro","Guardian de la puerta de Madafania",mundo5,1,1000,1000,10);
   mundo5->setPersonaje(p5);
-  PersonajeGuerrero* p6 = new PersonajeGuerrero("Rey de los Madafanes","El lider de la raza de los madafanes",mundo6,300,300,60);
+  PersonajeGuerrero* p6 = new PersonajeGuerrero("Rey de los Madafanes","El lider de la raza de los madafanes",mundo6,1,300,300,60);
   mundo6->setPersonaje(p6);
   
   //INTRODUCCION
@@ -44,7 +44,7 @@ int main()
   string nombre;
   cin >> nombre;
 
-  PersonajeGuerrero* jugador= new PersonajeGuerrero(nombre, "El heroe de Eluryh", mundo1, 500, 500, 20);
+  PersonajeGuerrero* jugador= new PersonajeGuerrero(nombre, "El heroe de Eluryh", mundo1, 500, 500, 20,1);
 
   cout << "Comenzando..." << endl;
   this_thread::sleep_for(chrono::milliseconds(1000));
@@ -55,16 +55,56 @@ int main()
   cout << nombre << ", quien se embarca en una misión para liberar el mundo de la opresión de los Madafanes y restaurar la paz." << endl;
   cout << "------------------------------------------------------------" << endl;
   cout << " " << endl;
-  cout << " " << endl;
 
-
+  bool primerit = true;
   Mundo* mundoActual = mundo1;
+  cout << "Bienvenido a " << mundoActual->getNombre()<<endl;
   while(true){
+      cout<< "******************************************************" <<endl;
       Personaje* personajeact = mundoActual->getPersonaje();
-      mundoActual->mostrarMundo();
-      jugador->imprime();
+      
 
-      break;
+      if(primerit){
+        mundoActual->mostrarMundo();
+        cout << "DATOS DEL PERSONAJE" <<endl;
+        personajeact->imprime();
+        cout << "" <<endl;
+      }
+      
+      cout << "DATOS ACTUALES DEL JUGADOR" <<endl;
+      jugador->imprime();
+      cout << "" <<endl;
+
+
+      if(personajeact->getTipo()==1){
+        cout<< "Presiona una tecla para atacar" <<endl;
+        cin.get();
+        int ataque = jugador->juega();
+        personajeact->recibeInteraccion(ataque);
+      }
+      else{
+        cout<< "Presiona una tecla para interactuar" <<endl;
+        cin.get();
+        int ataque = jugador->juega();
+        personajeact->recibeInteraccion(ataque);
+      }
+      
+
+
+      primerit = false;
+
+
+
+      if(personajeact->isAlive()==false){
+        cout << "Entrando a un nuevo mundo..." <<endl;
+        mundoActual = mundo2;
+        primerit = true;
+        mundoActual->mostrarMundo();
+        break;
+      }
+
+
+      cout<< "******************************************************" <<endl;
   }
 
  

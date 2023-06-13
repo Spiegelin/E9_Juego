@@ -2,10 +2,11 @@
 
 // Constructores
 Personaje::Personaje() {}
-Personaje::Personaje(std::string _nombre, std::string _desc, Mundo* _ubi) {
+Personaje::Personaje(std::string _nombre, std::string _desc, Mundo* _ubi,int _tipo) {
     nombre = _nombre;
     desc = _desc;
     ubi = _ubi;
+    tipo = _tipo;
 }
 
 // Destructor

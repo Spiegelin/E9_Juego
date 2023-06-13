@@ -6,7 +6,7 @@ class PersonajeGuerrero: public Personaje {
     public:
         // Constructores
         PersonajeGuerrero();
-        PersonajeGuerrero(std::string, std::string, Mundo*, int, int, int);
+        PersonajeGuerrero(std::string, std::string, Mundo*, int, int, int, int);
 
         // Destructor
         ~PersonajeGuerrero();
@@ -19,10 +19,10 @@ class PersonajeGuerrero: public Personaje {
         // Setters
         void setSaludTotal(int);
         void setSaludActual(int);
-        void getMaxAtaque(int);
+        void setMaxAtaque(int);
 
         // Métodos
-        bool isAlive();
+        bool isAlive() override;
         int porcentajeSalud();
         void barraVida();
         void imprime() override;

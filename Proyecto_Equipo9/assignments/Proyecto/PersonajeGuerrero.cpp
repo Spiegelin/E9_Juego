@@ -4,7 +4,7 @@
 // Constructores
 PersonajeGuerrero::PersonajeGuerrero(){}
 
-PersonajeGuerrero::PersonajeGuerrero(std::string _nombre, std::string _desc, Mundo* _ubi, int _saludTotal, int _saludActual, int _maxAtaque):Personaje(_nombre, _desc, _ubi) {
+PersonajeGuerrero::PersonajeGuerrero(std::string _nombre, std::string _desc, Mundo* _ubi,int _tipo, int _saludTotal, int _saludActual, int _maxAtaque):Personaje(_nombre, _desc, _ubi, _tipo) {
     saludTotal = _saludTotal;
     saludActual = _saludActual;
     maxAtaque = _maxAtaque;
@@ -40,7 +40,7 @@ void PersonajeGuerrero::setSaludActual(int _saludActual) {
     } 
 }
 
-void PersonajeGuerrero::getMaxAtaque(int _maxAtaque) {
+void PersonajeGuerrero::setMaxAtaque(int _maxAtaque) {
     maxAtaque = _maxAtaque;
 }
 
@@ -62,11 +62,11 @@ void PersonajeGuerrero::barraVida() {
     int cantP = (porcentajeSalud() * max) / 100;
     int cantI = max - cantP;
 
-    for (int i=0; i < cantP;i++) {
+    for (int i = 0; i < cantP; i++) {
         std::cout << "%";
     }
 
-    for (int i=0;i < cantP; i++) {
+    for (int i = 0; i < cantI; i++) {
         std::cout << "=";
     }
     std::cout << std::endl;
@@ -74,7 +74,7 @@ void PersonajeGuerrero::barraVida() {
 
 void PersonajeGuerrero::imprime() {
     Personaje::imprime();
-    std::cout << "SALUD: "; barraVida(); std::cout << std::endl;
+    std::cout << "SALUD: "; barraVida();
     std::cout << "-------------------------------------" << std::endl;
 }
 
@@ -88,12 +88,12 @@ int PersonajeGuerrero::juega() {
 
 void PersonajeGuerrero::recibeInteraccion(int num) {
     std::cout << "-------------------------------------" << std::endl;
-    std::cout << "OHHHH NO " << Personaje::getNombre() << " RECIBISTE " << num << "PUNTOS DE DAÑO" << std::endl;
+    std::cout << "OHHHH NO " << Personaje::getNombre() << " RECIBIO " << num << " PUNTOS DE DAÑO " << std::endl;
     std::cout << "-------------------------------------" << std::endl;
     setSaludActual(getSaludActual() - num);
 
     if (getSaludActual() <= 0) {
-        std::cout << "...MORISTE..." << std::endl;
+        std::cout << Personaje::getNombre() << " MURIO..." << std::endl;
         std::cout << "-------------------------------------" << std::endl;
     } else {
         imprime();

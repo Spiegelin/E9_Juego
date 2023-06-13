@@ -9,7 +9,7 @@ class Personaje {
     public:
         // Constructores
         Personaje();
-        Personaje(std::string, std::string, Mundo*);
+        Personaje(std::string, std::string, Mundo*,int);
 
         // Destructor
         ~Personaje();
@@ -18,6 +18,7 @@ class Personaje {
         std::string getNombre();
         std::string getDesc();
         Mundo* getUbi();
+        int getTipo();
 
         // Setters
         void setNombre(std::string);
@@ -28,8 +29,10 @@ class Personaje {
         virtual void imprime();
         virtual int juega() = 0;
         virtual void recibeInteraccion(int) = 0;
+        virtual bool isAlive() = 0;
     private:
         std::string nombre;
         std::string desc;
         Mundo* ubi;
+        int tipo;
 };

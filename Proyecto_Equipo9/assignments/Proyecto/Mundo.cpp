@@ -55,7 +55,11 @@ void Mundo::setPersonaje(Personaje* refpersonaje){
 }
 
 void Mundo::mostrarMundo(){
+    std::cout << "DATOS DE LA REGION"<< std::endl;
+    std::cout << "-------------------------------------" <<std::endl;
     std::cout << "Nombre: " << this->nombre << std::endl;
     std::cout << "Descripcion: " << this->descripcion << std::endl;
     std::cout << "Personaje: " << this->refpersonaje->getNombre() << std::endl;
+    std::cout << "-------------------------------------" <<std::endl;
+    std::cout << " " << std::endl;
 }
