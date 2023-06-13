@@ -80,9 +80,6 @@ void PersonajeGuerrero::imprime() {
 
 int PersonajeGuerrero::juega() {
     int num = std::rand() % getMaxAtaque()+1; // de 0 al ataque Máximo
-    std::cout << "-------------------------------------" << std::endl;
-    std::cout << Personaje::getNombre() << "REALIZÓ UN ATAQUE DE " << num << "PUNTOS DE SALUD" << std::endl;
-    std::cout << "-------------------------------------" << std::endl;
     return num;
 }
 

@@ -25,6 +25,10 @@ Mundo* Personaje::getUbi() {
     return ubi;
 }
 
+int Personaje::getTipo() {
+    return tipo;
+}
+
 // Setters
 void Personaje::setNombre(std::string _nombre) {
     nombre = _nombre;

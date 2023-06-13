@@ -82,7 +82,7 @@ int main()
         int ataque = jugador->juega();
         personajeact->recibeInteraccion(ataque);
       }
-      else{
+      else if(personajeact->getTipo()==2){
         cout<< "Presiona una tecla para interactuar" <<endl;
         cin.get();
         int ataque = jugador->juega();
