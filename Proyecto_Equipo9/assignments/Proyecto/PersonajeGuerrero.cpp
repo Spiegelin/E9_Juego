@@ -99,7 +99,7 @@ void PersonajeGuerrero::recibeInteraccion(int num) {
     setSaludActual(getSaludActual() - num);
 
     if (getSaludActual() <= 0) {
-        std::cout << Personaje::getNombre() << " MURIO..." << std::endl;
+        std::cout << Personaje::getNombre() << " MURIÓ..." << std::endl;
         std::cout << "-------------------------------------" << std::endl;
     } else {
         imprime();
