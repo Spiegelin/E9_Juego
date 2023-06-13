@@ -28,7 +28,8 @@ int main()
   Mundo* mundo3 = new Mundo("Calavera", "Una nacion de piratas", NULL, NULL,mundo4);
   Mundo* mundo2 = new Mundo("Amazonia", "Una nacion de mujeres guerreras", item2, NULL,mundo3);
   Mundo* mundo1 = new Mundo("Eluryh", "Una nacion de paz y armonia", NULL, NULL,mundo2);
-
+  
+  //se agrega cada mundo al vector mundos
   mundos.push_back(mundo1);
   mundos.push_back(mundo2);
   mundos.push_back(mundo3);
@@ -59,10 +60,11 @@ int main()
   string nombre;
   cin >> nombre;
 
+  //Se crea al personaje del jugador
   PersonajeGuerrero* jugador= new PersonajeGuerrero(nombre, "El heroe de Eluryh", mundo1,1, 500, 500, 100);
 
   cout << "Comenzando..." << endl;
-  this_thread::sleep_for(chrono::milliseconds(1000));
+  this_thread::sleep_for(chrono::milliseconds(1000)); //Se pone un timer de 1000 milisegundos para comenzar
 
   cout << "------------------------------------------------------------" << endl;
   cout << "En un mundo asolado por la oscuridad y el caos, los temibles trolls negros conocidos como Madafanes" << endl;
@@ -81,51 +83,51 @@ int main()
 
   while(true){
       cout<< "******************************************************" <<endl;
-      Personaje* personajeact = mundoActual->getPersonaje();
-      bool interactuo = false;
+      Personaje* personajeact = mundoActual->getPersonaje(); //Define el personaje actual segun el mundo en el que se encuentre
+      bool interactuo = false; //PARA PERSONAJES AMISTOSOS define si ya se interactuo con el personaje para que no interactue mas de una vez
 
-      if(primerit){
+      if(primerit){ //Si es la primera iteracion del mundo, muestra la descripcion del mundo y personaje
         mundoActual->mostrarMundo();
         cout << "DATOS DEL PERSONAJE" <<endl;
         personajeact->imprime();
         cout << "" <<endl;
       }
       
-      cout << "DATOS ACTUALES DEL JUGADOR" <<endl;
+      cout << "DATOS ACTUALES DEL JUGADOR" <<endl; //Muestra los datos del jugador
       jugador->imprime();
       cout << "" <<endl;
 
-      int opcion = 0;
-      if(personajeact->getTipo()==1){
+      int opcion = 0; //Variable que define la opcion que el jugador elige
+      if(personajeact->getTipo()==1){ //Si el personaje es de tipo guerrero, se le da la opcion de atacar
         cout<< "Elige un ataque" <<endl;
         cout<< "1. Ataque Golpe" <<endl;
         cout<< "2. Ataque Patada" <<endl;
         cin >> opcion;
-        int ataque = jugador->juega();
-        personajeact->recibeInteraccion(ataque);
+        int ataque = jugador->juega(); //Se genera un ataque aleatorio
+        personajeact->recibeInteraccion(ataque); //Se le aplica el ataque al personaje
       }
-      else if(personajeact->getTipo()==2){
+      else if(personajeact->getTipo()==2){ //Si el personaje es de tipo amistoso, se le da la opcion de interactuar
         cout<< "Ingrea un numero para interactuar" <<endl;
         cout<< "1. Hablar" <<endl;
         cout<< "2. Gritar" <<endl;
         cin >> opcion;
-        int ataque = jugador->juega();
-        personajeact->recibeInteraccion(ataque);
-        interactuo = true;
+        int ataque = jugador->juega(); //Se genera un numero aleatorio
+        personajeact->recibeInteraccion(ataque); //Se le aplica el numero al personaje
+        interactuo = true; //Se define que ya se interactuo con el personaje
       }
       
-      primerit = false;
+      primerit = false; //Se define que ya no es la primera iteracion del mundo
 
-      if(mundoActual->getNombre()=="Madafania" && personajeact->isAlive()==false){
+      if(mundoActual->getNombre()=="Madafania" && personajeact->isAlive()==false){ //Si el personaje de Madafania muere, se termina el juego
         cout << "Felicidades, has ganado el juego" <<endl;
         break;
       }
 
-      if(personajeact->isAlive()==false || interactuo == true){
+      if(personajeact->isAlive()==false || interactuo == true){ //Si el personaje muere o ya se interactuo con el personaje, se pasa al siguiente mundo
         cout << "Entrando a un nuevo mundo..." <<endl;
-        posicionmundo++;
-        mundoActual = mundos[posicionmundo];
-        primerit = true;
+        posicionmundo++; //Se aumenta la posicion del mundo actual en el vector mundos
+        mundoActual = mundos[posicionmundo]; //Se define el mundo actual
+        primerit = true; //Se define que es la primera iteracion del mundo
       }
 
       
