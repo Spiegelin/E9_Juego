@@ -67,7 +67,7 @@ int main()
   while(true){
       cout<< "******************************************************" <<endl;
       Personaje* personajeact = mundoActual->getPersonaje();
-      
+      bool interactuo = false;
 
       if(primerit){
         mundoActual->mostrarMundo();
@@ -96,11 +96,12 @@ int main()
         cin >> opcion;
         int ataque = jugador->juega();
         personajeact->recibeInteraccion(ataque);
+        interactuo = true;
       }
       
       primerit = false;
 
-      if(personajeact->isAlive()==false){
+      if(personajeact->isAlive()==false || interactuo == true){
         cout << "Entrando a un nuevo mundo..." <<endl;
         mundoActual = mundo2;
         primerit = true;
