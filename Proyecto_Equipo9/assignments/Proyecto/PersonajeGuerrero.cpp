@@ -1,5 +1,6 @@
 #include "PersonajeGuerrero.hpp"
 #include <cstdlib> // Para los números aleatorios
+#include <random>
 
 // Constructores
 PersonajeGuerrero::PersonajeGuerrero(){}
@@ -77,15 +78,23 @@ void PersonajeGuerrero::imprime() {
     std::cout << "SALUD: "; barraVida();
     std::cout << "-------------------------------------" << std::endl;
 }
-
+/*
 int PersonajeGuerrero::juega() {
     int num = std::rand() % getMaxAtaque()+1; // de 0 al ataque Máximo
     return num;
 }
+*/
+int PersonajeGuerrero::juega() {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(0, getMaxAtaque());
+
+        return dis(gen);
+}
 
 void PersonajeGuerrero::recibeInteraccion(int num) {
     std::cout << "-------------------------------------" << std::endl;
-    std::cout << "OHHHH NO " << Personaje::getNombre() << " RECIBIO " << num << " PUNTOS DE DAÑO " << std::endl;
+    std::cout << "OHHHH NO " << Personaje::getNombre() << " RECIBIÓ " << num << " PUNTOS DE DAÑO " << std::endl;
     std::cout << "-------------------------------------" << std::endl;
     setSaludActual(getSaludActual() - num);
 
