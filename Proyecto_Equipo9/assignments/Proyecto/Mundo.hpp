@@ -20,6 +20,7 @@ class Mundo{
         std::string getDescripcion();
         Item* getItem();
         Personaje* getPersonaje();
+        Mundo* getMundoSiguiente(); 
         void setNombre(std::string);
         void setDescripcion(std::string);
         void setMundoSiguiente(Mundo*);

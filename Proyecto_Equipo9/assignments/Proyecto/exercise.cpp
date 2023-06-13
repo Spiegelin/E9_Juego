@@ -75,44 +75,39 @@ int main()
       jugador->imprime();
       cout << "" <<endl;
 
-
+      int opcion = 0;
       if(personajeact->getTipo()==1){
-        cout<< "Presiona una tecla para atacar" <<endl;
-        cin.get();
+        cout<< "Elige un ataque" <<endl;
+        cout<< "1. Ataque Golpe" <<endl;
+        cout<< "2. Ataque Patada" <<endl;
+        cin >> opcion;
         int ataque = jugador->juega();
         personajeact->recibeInteraccion(ataque);
       }
       else if(personajeact->getTipo()==2){
-        cout<< "Presiona una tecla para interactuar" <<endl;
-        cin.get();
+        cout<< "Ingrea un numero para interactuar" <<endl;
+        cout<< "1. Hablar" <<endl;
+        cout<< "2. Gritar" <<endl;
+        cin >> opcion;
         int ataque = jugador->juega();
         personajeact->recibeInteraccion(ataque);
       }
       
-
-
       primerit = false;
-
-
 
       if(personajeact->isAlive()==false){
         cout << "Entrando a un nuevo mundo..." <<endl;
         mundoActual = mundo2;
         primerit = true;
-        mundoActual->mostrarMundo();
-        break;
       }
 
-
+      if(mundoActual->getMundoSiguiente()==NULL){
+        cout << "Felicidades, has ganado el juego" <<endl;
+        break;
+      }
       cout<< "******************************************************" <<endl;
+    
   }
-
- 
-
-
-
-
-
-
+  return 0;
 }
 
