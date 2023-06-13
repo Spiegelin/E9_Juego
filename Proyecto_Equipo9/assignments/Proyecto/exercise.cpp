@@ -120,6 +120,7 @@ int main()
         interactuo = true; //Se define que ya se interactuo con el personaje
         Item* item = mundoActual->getItem(); //Se obtiene el item del mundo actual
         item->mostrarItem(); //Se muestra el item
+        cout << "El item " << item->getNombre() << " te ha añadido " << item->getPuntos() << " puntos de salud" <<endl;
         jugador->setSaludActual(jugador->getSaludActual()+item->getPuntos()); //Se le suma la salud del item al jugador
       }
       
@@ -140,6 +141,7 @@ int main()
         cout << "Entrando a un nuevo mundo..." <<endl;
         posicionmundo++; //Se aumenta la posicion del mundo actual en el vector mundos
         mundoActual = mundos[posicionmundo]; //Se define el mundo actual
+        jugador ->setUbi(mundos[posicionmundo]); //Se define el mundo actual del jugador
         primerit = true; //Se define que es la primera iteracion del mundo
       }
 
