@@ -6,6 +6,11 @@
 #include "PersonajeAmistoso.hpp"
 using namespace std;
 
+
+
+
+
+
 int main() 
 {
   //CREACION DE ITEMS
@@ -44,7 +49,7 @@ int main()
   string nombre;
   cin >> nombre;
 
-  PersonajeGuerrero* jugador= new PersonajeGuerrero(nombre, "El heroe de Eluryh", mundo1, 500, 500, 20,1);
+  PersonajeGuerrero* jugador= new PersonajeGuerrero(nombre, "El heroe de Eluryh", mundo1,1, 500, 500, 20);
 
   cout << "Comenzando..." << endl;
   this_thread::sleep_for(chrono::milliseconds(1000));
@@ -99,12 +104,13 @@ int main()
         cout << "Entrando a un nuevo mundo..." <<endl;
         mundoActual = mundo2;
         primerit = true;
-      }
-
-      if(mundoActual->getMundoSiguiente()==NULL){
-        cout << "Felicidades, has ganado el juego" <<endl;
         break;
       }
+
+      /*if(mundoActual->getMundoSiguiente()==NULL){
+        cout << "Felicidades, has ganado el juego" <<endl;
+        break;
+      }*/
       cout<< "******************************************************" <<endl;
     
   }
