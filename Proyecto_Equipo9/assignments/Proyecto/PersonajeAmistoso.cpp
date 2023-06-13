@@ -58,7 +58,7 @@ void PersonajeAmistoso::recibeInteraccion(int num) {
         juega();
     } else {
         std::cout << "-------------------------------------" << std::endl;
-        std::cout << Personaje::getNombre() << "ESTÁ DORMIDO, NO LO MOLESTES" << std::endl;
+        std::cout << Personaje::getNombre() << " ESTÁ DORMIDO, NO LO MOLESTES" << std::endl;
         std::cout << "-------------------------------------" << std::endl;
     }
 }
