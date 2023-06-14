@@ -32,7 +32,7 @@ class Personaje {
         virtual bool isAlive() = 0;
 
         // Sobrecarga de operador de flujo de salida
-        friend std::ostream& operator<< (std::ostream &, Personaje&);
+        friend std::ostream& operator<< (std::ostream&, Personaje&);
     private:
         std::string nombre;
         std::string desc;
