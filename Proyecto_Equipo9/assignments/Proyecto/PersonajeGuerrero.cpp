@@ -1,6 +1,8 @@
 #include "PersonajeGuerrero.hpp"
 #include <cstdlib> // Para los números aleatorios
 #include <random>
+#include <chrono>
+#include <thread>
 
 // Constructores
 PersonajeGuerrero::PersonajeGuerrero(){}
@@ -36,6 +38,8 @@ void PersonajeGuerrero::setSaludActual(int _saludActual) {
     // Evitar valores negativos
     if (_saludActual < 0) {
         saludActual = 0;
+    } else if (_saludActual > getSaludTotal()) {
+        saludActual = getSaludTotal(); // Para que no teng vida extra, y si es mayor a su vida máxima, se resetee
     } else {
         saludActual = _saludActual;
     } 
@@ -96,12 +100,15 @@ void PersonajeGuerrero::recibeInteraccion(int num) {
     std::cout << "-------------------------------------" << std::endl;
     std::cout << "OHHHH NO " << Personaje::getNombre() << " RECIBIÓ " << num << " PUNTOS DE DAÑO " << std::endl;
     std::cout << "-------------------------------------" << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     setSaludActual(getSaludActual() - num);
 
     if (getSaludActual() <= 0) {
         std::cout << Personaje::getNombre() << " MURIÓ..." << std::endl;
         std::cout << "-------------------------------------" << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     } else {
         imprime();
+        std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     }
 }

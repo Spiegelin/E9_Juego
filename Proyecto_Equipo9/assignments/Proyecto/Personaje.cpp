@@ -49,3 +49,13 @@ void Personaje::imprime() {
     std::cout << "UBICACIÓN: " << getUbi() -> getNombre() << std::endl;
     std::cout << "-------------------------------------" << std::endl;
 }
+
+// Sobrecarga de operador de flujo de salida
+std::ostream& operator<< (std::ostream& salida, Personaje& p) {
+    salida << "-------------------------------------" << std::endl;
+    salida << "PERSONAJE: " << p.getNombre() << std::endl;
+    salida << "UBICACIÓN: " << p.getUbi() -> getNombre() << std::endl;
+    salida << "-------------------------------------" << std::endl;
+
+    return salida;
+}

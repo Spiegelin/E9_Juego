@@ -10,9 +10,6 @@ using namespace std;
 
 
 
-
-
-
 int main() 
 {
   //CREACION DE ITEMS
@@ -29,7 +26,7 @@ int main()
   Mundo* mundo2 = new Mundo("Amazonia", "Una nacion de mujeres guerreras", item2, NULL,mundo3);
   Mundo* mundo1 = new Mundo("Eluryh", "Una nacion de paz y armonia", NULL, NULL,mundo2);
   
-  //se agrega cada mundo al vector mundos
+  // Se agrega cada mundo al vector mundos
   mundos.push_back(mundo1);
   mundos.push_back(mundo2);
   mundos.push_back(mundo3);
@@ -38,7 +35,6 @@ int main()
   mundos.push_back(mundo6);
 
   //CREACION DE PERSONAJES SECUNDARIOS
-
   PersonajeGuerrero* p1 = new PersonajeGuerrero("Madafan basico", "El mas debil de los madafanes", mundo1,1, 100,100,10);
   mundo1->setPersonaje(p1);
   PersonajeAmistoso* p2 = new PersonajeAmistoso("Gilberta", "Una mujer enamorada de un madafan", mundo2,2,true,"Oh, viajero valiente, soy Gilberta, una humana atrapada en un amor no correspondido. Me he enamorado perdidamente de un troll negro, pero mi corazón solo conoce el dolor de la indiferencia. Sin embargo, puedo ayudarte en tu noble misión. En este oscuro y peligroso mundo, te ofrezco una Poción de Salud, un elixir que restaurará tus fuerzas en momentos de necesidad. Espero que encuentres la felicidad y el éxito en tu aventura. ¡Cuídate!");
@@ -56,9 +52,8 @@ int main()
   cout << "Bienvenvenido al juego de aventura" << endl;
   cout << "Ingrese cualquier tecla para continuar" << endl;
   cin.get();
-  cout << "Ingrese su nombre: " << endl;
   string nombre;
-  cin >> nombre;
+  cout << "Ingrese su nombre: "; cin >> nombre; cout << endl;
 
   //Se crea al personaje del jugador
   PersonajeGuerrero* jugador= new PersonajeGuerrero(nombre, "El heroe de Eluryh", mundo1,1, 300, 300, 100);
@@ -72,76 +67,90 @@ int main()
   cout << nombre << ", quien se embarca en una misión para liberar el mundo de la opresión de los Madafanes y restaurar la paz." << endl;
   cout << "------------------------------------------------------------" << endl;
   cout << " " << endl;
+  this_thread::sleep_for(chrono::milliseconds(5000)); //Se pone un timer de 5000 milisegundos para que el usuario lea la historia
 
 
-//BUCLE DEL JUEGO PRINCIPAL
-
+  //BUCLE DEL JUEGO PRINCIPAL
   bool primerit = true; //Define si es la primera iteracion de un mundo
   Mundo* mundoActual = mundo1; //variable que define el mundo actual
   int posicionmundo = 0; //variable que define la posicion del mundo actual en el vector mundos
-  cout << "Bienvenido a " << mundoActual->getNombre()<<endl;
+  cout << "Bienvenido a " << mundoActual -> getNombre() << endl;
 
   while(true){
       cout<< "******************************************************" <<endl;
-      Personaje* personajeact = mundoActual->getPersonaje(); //Define el personaje actual segun el mundo en el que se encuentre
-      bool interactuo = false; //PARA PERSONAJES AMISTOSOS define si ya se interactuo con el personaje para que no interactue mas de una vez
+      Personaje* personajeact = mundoActual -> getPersonaje(); //Define el personaje actual segun el mundo en el que se encuentre
+      bool interactuo = false; //PARA PERSONAJES AMISTOSOS define si ya se interactuo con el personaje para que no interactue más de una vez
 
-      if(primerit){ //Si es la primera iteracion del mundo, muestra la descripcion del mundo y personaje
-        mundoActual->mostrarMundo();
+      if (primerit) { //Si es la primera iteracion del mundo, muestra la descripcion del mundo y personaje
+        mundoActual -> mostrarMundo();
+        this_thread::sleep_for(chrono::milliseconds(2000));
+
         cout << "DATOS DEL PERSONAJE" <<endl;
-        personajeact->imprime();
-        cout << "" <<endl;
+        cout << *personajeact; // Usamos operador sobrecargado <<
+        cout << endl;
+        this_thread::sleep_for(chrono::milliseconds(5000));
       }
       
-      cout << "DATOS ACTUALES DEL JUGADOR" <<endl; //Muestra los datos del jugador
-      jugador->imprime();
-      cout << "" <<endl;
+      cout << "DATOS ACTUALES DEL JUGADOR" << endl; //Muestra los datos del jugador
+      cout << *jugador;
+      cout << endl;
+      this_thread::sleep_for(chrono::milliseconds(3000));
 
       int opcion = 0; //Variable que define la opcion que el jugador elige
-      if(personajeact->getTipo()==1){ //Si el personaje es de tipo guerrero, se le da la opcion de atacar
+      if (personajeact -> getTipo() == 1){ // Si el personaje es de tipo guerrero, se le da la opción de atacar
         cout<< "Elige un ataque" <<endl;
         cout<< "1. Ataque Golpe" <<endl;
         cout<< "2. Ataque Patada" <<endl;
         cin >> opcion;
-        int ataque = jugador->juega(); //Se genera un ataque aleatorio
-        personajeact->recibeInteraccion(ataque); //Se le aplica el ataque al personaje
+        int ataque = jugador -> juega(); // Se genera un ataque aleatorio
 
-        cout<< "TURNO DEL ENEMIGO" <<endl; 
-        int ataqueenemigo = personajeact->juega(); //Se genera un ataque aleatorio del enemigo
-        jugador->recibeInteraccion(ataqueenemigo); //Se le aplica el ataque al jugador
+        personajeact -> recibeInteraccion(ataque); // Se le aplica el ataque al personaje
+
+        if (personajeact -> isAlive() == true) {
+          cout << "TURNO DEL ENEMIGO" << endl; 
+          this_thread::sleep_for(chrono::milliseconds(2000));
+          int ataqueenemigo = personajeact -> juega(); //Se genera un ataque aleatorio del enemigo
+          jugador -> recibeInteraccion(ataqueenemigo); //Se le aplica el ataque al jugador
+        }
       }
-      else if(personajeact->getTipo()==2){ //Si el personaje es de tipo amistoso, se le da la opcion de interactuar
-        cout<< "Ingrea un numero para interactuar" <<endl;
-        cout<< "1. Hablar" <<endl;
-        cout<< "2. Gritar" <<endl;
+      else if (personajeact -> getTipo() == 2){ // Si el personaje es de tipo amistoso, se le da la opcion de interactuar
+        cout << "Ingresa un número para interactuar" << endl;
+        cout << "1. Hablar" << endl;
+        cout << "2. Gritar" << endl;
         cin >> opcion;
-        int ataque = jugador->juega(); //Se genera un numero aleatorio
-        personajeact->recibeInteraccion(ataque); //Se le aplica el numero al personaje
-        interactuo = true; //Se define que ya se interactuo con el personaje
-        Item* item = mundoActual->getItem(); //Se obtiene el item del mundo actual
-        item->mostrarItem(); //Se muestra el item
-        cout << "El item " << item->getNombre() << " te ha añadido " << item->getPuntos() << " puntos de salud" <<endl;
-        jugador->setSaludActual(jugador->getSaludActual()+item->getPuntos()); //Se le suma la salud del item al jugador
+        int ataque = jugador -> juega(); // Se genera un número aleatorio
+        personajeact -> recibeInteraccion(ataque); // Se le aplica el número al personaje
+        interactuo = true; // Se define que ya se interactuo con el personaje
+        Item* item = mundoActual -> getItem(); // Se obtiene el item del mundo actual
+        item -> mostrarItem(); // Se muestra el item
+        cout << "El item " << item -> getNombre() << " te ha añadido " << item -> getPuntos() << " puntos de salud" << endl;
+        jugador -> setSaludActual(jugador -> getSaludActual()+item -> getPuntos()); //Se le suma la salud del item al jugador
       }
       
       primerit = false; //Se define que ya no es la primera iteracion del mundo
 
 
-      if(jugador->isAlive()==false){ //Si el jugador muere, se termina el juego
+      if (jugador -> isAlive() == false){ //Si el jugador muere, se termina el juego
+        this_thread::sleep_for(chrono::milliseconds(1000));
         cout << "Has perdido el juego" <<endl;
+        this_thread::sleep_for(chrono::milliseconds(2000));
         break;
       }
 
-      if(mundoActual->getNombre()=="Madafania" && personajeact->isAlive()==false){ //Si el personaje de Madafania muere, se termina el juego
+      if (mundoActual -> getNombre() == "Madafania" && personajeact -> isAlive() == false){ // Si el personaje de Madafania muere, se termina el juego
+        this_thread::sleep_for(chrono::milliseconds(1000));
         cout << "Felicidades, has ganado el juego" <<endl;
+        this_thread::sleep_for(chrono::milliseconds(2000));
         break;
       }
 
-      if(personajeact->isAlive()==false || interactuo == true){ //Si el personaje muere o ya se interactuo con el personaje, se pasa al siguiente mundo
-        cout << "Entrando a un nuevo mundo..." <<endl;
+      if (personajeact -> isAlive() == false || interactuo == true){ // Si el personaje muere o ya se interactúo con el personaje, se pasa al siguiente mundo
+        this_thread::sleep_for(chrono::milliseconds(1000));
+        cout << "Entrando a un nuevo mundo..." << endl;
+        this_thread::sleep_for(chrono::milliseconds(3000));
         posicionmundo++; //Se aumenta la posicion del mundo actual en el vector mundos
         mundoActual = mundos[posicionmundo]; //Se define el mundo actual
-        jugador ->setUbi(mundos[posicionmundo]); //Se define el mundo actual del jugador
+        jugador -> setUbi(mundos[posicionmundo]); //Se define el mundo actual del jugador
         primerit = true; //Se define que es la primera iteracion del mundo
       }
 

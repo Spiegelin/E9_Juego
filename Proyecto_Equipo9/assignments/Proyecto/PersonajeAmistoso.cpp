@@ -1,4 +1,6 @@
 #include "PersonajeAmistoso.hpp"
+#include <chrono>
+#include <thread>
 
 // Constructores
 PersonajeAmistoso::PersonajeAmistoso(){}
@@ -34,10 +36,11 @@ int PersonajeAmistoso::juega() {
     if (getEstatus()) {
         // Despliega su historia y quién es
         std::cout << "-------------------------------------" << std::endl;
-        Personaje::imprime();
+        std::cout << *this;
         std::cout << "MI HISTORIA" << std::endl;
         std::cout << historia << std::endl;
         std::cout << "-------------------------------------" << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(5000));
         
         // Indica que item está en el cuarto
         std::cout << "EL ITEM QUE SE ENCUENTRA EN ESTE MUNDO ES:" << std::endl;
@@ -46,7 +49,7 @@ int PersonajeAmistoso::juega() {
         return Personaje::getUbi() -> getItem() -> getPuntos();
     } else {
         std::cout << "-------------------------------------" << std::endl;
-        Personaje::imprime();
+        std::cout << *this;
         std::cout << "NO ESTÁ DISPUESTO A HABLARTE" << std::endl;
         std::cout << "-------------------------------------" << std::endl;
         return 0;
