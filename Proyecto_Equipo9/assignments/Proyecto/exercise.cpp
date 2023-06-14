@@ -96,7 +96,7 @@ int main()
       cout << endl;
       this_thread::sleep_for(chrono::milliseconds(3000));
 
-      int opcion = 0; //Variable que define la opcion que el jugador elige
+      int opcion = 0; // Variable que define la opcion que el jugador elige
       if (personajeact -> getTipo() == 1){ // Si el personaje es de tipo guerrero, se le da la opción de atacar
         cout<< "Elige un ataque" <<endl;
         cout<< "1. Ataque Golpe" <<endl;
