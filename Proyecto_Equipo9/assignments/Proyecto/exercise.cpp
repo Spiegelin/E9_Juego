@@ -43,9 +43,9 @@ int main()
   mundo3->setPersonaje(p3);
   PersonajeAmistoso* p4 = new PersonajeAmistoso("Heredia", "Un mercader vanidoso", mundo4,2, true, "¡Saludos, querido aventurero! Soy Heredia, el ser más deslumbrante y encantador que haya pisado jamás estos mundos. Mi aspecto impecable y mi estilo inigualable son la envidia de todos. Pero, permíteme decirte algo, si deseas tener éxito en tu misión de liberar el mundo de los temidos Madafanes, debes encontrar la Espada del Destino, una reliquia legendaria capaz de derrotar incluso al más poderoso de los trolls negros. ¡Buena suerte en tu búsqueda!");
   mundo4->setPersonaje(p4);
-  PersonajeGuerrero* p5 = new PersonajeGuerrero("Dragon negro","Guardian de la puerta de Madafania",mundo5,1,1000,1000,10);
+  PersonajeGuerrero* p5 = new PersonajeGuerrero("Dragon negro","Guardian de la puerta de Madafania",mundo5,1,1000,1000,50);
   mundo5->setPersonaje(p5);
-  PersonajeGuerrero* p6 = new PersonajeGuerrero("Rey de los Madafanes","El lider de la raza de los madafanes",mundo6,1,300,300,60);
+  PersonajeGuerrero* p6 = new PersonajeGuerrero("Rey de los Madafanes","El lider de la raza de los madafanes",mundo6,1,300,300,70);
   mundo6->setPersonaje(p6);
   
   //INTRODUCCION
