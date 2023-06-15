@@ -8,8 +8,7 @@
 #include "PersonajeAmistoso.hpp"
 using namespace std;
 
-
-
+//Funcion principal del juego
 int main() 
 {
   //CREACION DE ITEMS
