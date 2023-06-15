@@ -27,7 +27,7 @@ class Personaje {
 
         // Métodos
         virtual void imprime();
-        virtual int juega() = 0;
+        virtual int juega(int) = 0;
         virtual void recibeInteraccion(int) = 0;
         virtual bool isAlive() = 0;
 

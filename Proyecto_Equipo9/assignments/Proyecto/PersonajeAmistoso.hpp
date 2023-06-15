@@ -20,7 +20,7 @@ class PersonajeAmistoso: public Personaje {
         void setHistoria(std::string);
 
         // Métodos
-        int juega() override;
+        int juega(int) override;
         void recibeInteraccion(int) override;
         bool isAlive() override;
     private:

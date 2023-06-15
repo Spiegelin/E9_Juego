@@ -26,7 +26,7 @@ class PersonajeGuerrero: public Personaje {
         int porcentajeSalud();
         void barraVida();
         void imprime() override;
-        int juega() override;
+        int juega(int) override;
         void recibeInteraccion(int) override;
     private:
         int saludTotal;

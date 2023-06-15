@@ -32,7 +32,7 @@ void PersonajeAmistoso::setHistoria(std::string _historia) {
 }
 
 // Métodos
-int PersonajeAmistoso::juega() {
+int PersonajeAmistoso::juega(int opcion) {
     if (getEstatus()) {
         // Despliega su historia y quién es
         std::cout << "-------------------------------------" << std::endl;
@@ -58,7 +58,7 @@ int PersonajeAmistoso::juega() {
 
 void PersonajeAmistoso::recibeInteraccion(int num) {
     if (num > 3) {
-        juega();
+        juega(num);
     } else {
         std::cout << "-------------------------------------" << std::endl;
         std::cout << Personaje::getNombre() << " ESTÁ DORMIDO, NO LO MOLESTES" << std::endl;

@@ -88,12 +88,18 @@ int PersonajeGuerrero::juega() {
     return num;
 }
 */
-int PersonajeGuerrero::juega() {
+int PersonajeGuerrero::juega(int opcion) {
+    if (opcion == 1) {
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<> dis(0, getMaxAtaque());
-
         return dis(gen);
+    } else if (opcion == 2) {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> dis(0, getMaxAtaque() / 2);
+        return dis(gen);
+    }   
 }
 
 void PersonajeGuerrero::recibeInteraccion(int num) {

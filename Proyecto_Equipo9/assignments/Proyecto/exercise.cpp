@@ -101,14 +101,20 @@ int main()
         cout<< "1. Ataque Golpe" <<endl;
         cout<< "2. Ataque Patada" <<endl;
         cin >> opcion;
-        int ataque = jugador -> juega(); // Se genera un ataque aleatorio
+
+        int ataque = 0; // Variable que define el ataque que se le aplicará al personaje
+        if(opcion==1){
+          ataque = jugador -> juega(1); // Se genera un ataque aleatorio
+        }else if(opcion==2){
+          ataque = jugador -> juega(2); // Se genera un ataque aleatorio
+        }
 
         personajeact -> recibeInteraccion(ataque); // Se le aplica el ataque al personaje
 
         if (personajeact -> isAlive() == true) {
           cout << "TURNO DEL ENEMIGO" << endl; 
           this_thread::sleep_for(chrono::milliseconds(2000));
-          int ataqueenemigo = personajeact -> juega(); //Se genera un ataque aleatorio del enemigo
+          int ataqueenemigo = personajeact -> juega(1); //Se genera un ataque aleatorio del enemigo
           jugador -> recibeInteraccion(ataqueenemigo); //Se le aplica el ataque al jugador
         }
       }
@@ -117,7 +123,7 @@ int main()
         cout << "1. Hablar" << endl;
         cout << "2. Gritar" << endl;
         cin >> opcion;
-        int ataque = jugador -> juega(); // Se genera un número aleatorio
+        int ataque = jugador -> juega(1); // Se genera un número aleatorio
         personajeact -> recibeInteraccion(ataque); // Se le aplica el número al personaje
         interactuo = true; // Se define que ya se interactuo con el personaje
         Item* item = mundoActual -> getItem(); // Se obtiene el item del mundo actual
