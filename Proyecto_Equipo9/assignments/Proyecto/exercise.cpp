@@ -97,17 +97,19 @@ int main()
 
       int opcion = 0; // Variable que define la opcion que el jugador elige
       if (personajeact -> getTipo() == 1){ // Si el personaje es de tipo guerrero, se le da la opción de atacar
-        cout<< "Elige un ataque" <<endl;
-        cout<< "1. Ataque Golpe" <<endl;
-        cout<< "2. Ataque Patada" <<endl;
+        cout << "Elige un ataque" << endl;
+        cout << "1. Ataque Golpe" << endl;
+        cout << "2. Ataque Patada" << endl;
         cin >> opcion;
 
         int ataque = 0; // Variable que define el ataque que se le aplicará al personaje
-        if(opcion==1){
-          ataque = jugador -> juega(1); // Se genera un ataque aleatorio
-        }else if(opcion==2){
-          ataque = jugador -> juega(2); // Se genera un ataque aleatorio
-        }
+        if (opcion == 1){
+            ataque = jugador -> juega(opcion); // Se genera un ataque aleatorio 
+        } else if (opcion == 2){
+            ataque = jugador -> juega(opcion); // Se genera un ataque aleatorio
+        } else {
+          ataque = jugador -> juega(opcion);
+        }  
 
         personajeact -> recibeInteraccion(ataque); // Se le aplica el ataque al personaje
 

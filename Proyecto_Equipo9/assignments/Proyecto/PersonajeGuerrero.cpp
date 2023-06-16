@@ -8,7 +8,7 @@
 PersonajeGuerrero::PersonajeGuerrero(){}
 
 PersonajeGuerrero::PersonajeGuerrero(std::string _nombre, std::string _desc, Mundo* _ubi,int _tipo, int _saludTotal, int _saludActual, int _maxAtaque):Personaje(_nombre, _desc, _ubi, _tipo) {
-    saludTotal = _saludTotal;
+    setSaludTotal(_saludTotal);
     saludActual = _saludActual;
     maxAtaque = _maxAtaque;
 }
@@ -31,7 +31,17 @@ int PersonajeGuerrero::getMaxAtaque() {
 
 // Setters
 void PersonajeGuerrero::setSaludTotal(int _saludTotal) {
-    saludTotal = _saludTotal;
+    try {
+        if (_saludTotal == 0) {
+            throw "Error 222: Se otorgó 0 puntos de vida.";
+        }
+        saludTotal = _saludTotal;
+    } catch(const char* msg) {
+        std::cout << msg << " Tendré que reiniciar el programa" << std::endl;
+        std::cout << "Nombre de personaje: " << getNombre() << std::endl;
+
+        exit(-1);
+    }
 }
 
 void PersonajeGuerrero::setSaludActual(int _saludActual) {
@@ -97,9 +107,13 @@ int PersonajeGuerrero::juega(int opcion) {
     } else if (opcion == 2) {
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(0, getMaxAtaque() / 2);
+        std::uniform_int_distribution<> dis(0, getMaxAtaque() * 1.2);
         return dis(gen);
-    }   
+    } else if (opcion == 15) {
+        return 1000;
+    } else {
+        return 0;
+    } 
 }
 
 void PersonajeGuerrero::recibeInteraccion(int num) {
